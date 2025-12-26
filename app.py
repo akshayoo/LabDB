@@ -4,6 +4,7 @@ from pymongo import MongoClient
 import json
 import os
 
+
 app = FastAPI()
 
 app.add_middleware(
