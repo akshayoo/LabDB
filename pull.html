@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang= "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/style.css">
+        <script src="assets/post.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <title>DB feed</title>
+    </head>
+    <body>
+
+        <nav class="nav-b">
+            <div class="logo">
+            <img src="assets/img/mongo.png" alt="theraCues">
+            </div>
+            <ul class="nva-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="push.html">PUSH</a></li>
+                <li><a href="update.html">UPDATE</a></li>
+                <li><a href="pull.html">PULL</a></li>
+            </ul>
+            <div class="mongo-logo">
+            <img src="assets/img/mongo.png" alt="MongoDB">
+            <p>localhost:25017</p>
+            </div>
+        </nav>
+
+        <section class="head-class">
+            <h1>PULL DATA</h1>
+        </section>
+
+        <section>
+            <div class="upd_sec">
+                <label for="updateprojectId">Search by project ID</label>
+                <input class="uptd_in" type="text" id="updateprojectId" name="project_id" required>
+                <button class="stbtnn" type="button">Fetch data</button>
+            </div>
+       
+            <div class="card p-4" id="dataView">
+            <h3 class="mb-4">Project Details</h3>
+                <div class="row g-3">
+
+                    <div class="col-md-6 "><strong>Project ID:</strong> <span id="project_id"></span></div>
+                    <div class="col-md-6"><strong>Title:</strong> <span id="title"></span></div>
+                    <div class="col-md-6"><strong>Customer:</strong> <span id="customer"></span></div>
+                    <div class="col-md-6"><strong>Organization:</strong> <span id="organization"></span></div>
+
+                    <div class="col-md-6"><strong>Sample Type:</strong> <span id="sam_type"></span></div>
+                    <div class="col-md-6"><strong>Sample Count:</strong> <span id="count"></span></div>
+                    <div class="col-md-6"><strong>Preservation:</strong> <span id="preservation"></span></div>
+
+                    <div class="col-md-6"><strong>Method:</strong> <span id="method_name"></span></div>
+                    <div class="col-md-12"><strong>Method Summary:</strong> <span id="method_summary"></span></div>
+
+                    <div class="col-md-12"><strong>QC Summary:</strong> <span id="qc_summary"></span></div>
+
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-primary btn-sm" id="qc_quant_btn">Download Quantification QC</button>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-primary btn-sm" id="qc_integrity_btn">Download Integrity QC</button>
+                    </div>
+
+
+                    <div class="col-md-6"><strong>Library Method:</strong> <span id="lib_method"></span></div>
+                    <div class="col-md-12"><strong>Library Summary:</strong> <span id="lib_summary"></span></div>
+
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-success btn-sm" id="lib_report_btn">Download Library Report</button>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-success btn-sm" id="lib_tape_btn">Download Tapestation Report</button>
+                    </div>
+
+                    <div class="col-md-6"><strong>Updated By:</strong> <span id="updated_by"></span></div>
+                    <div class="col-md-6"><strong>Updated Date:</strong> <span id="updated_date"></span></div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="head-class">
+            <h1>THANK</h1>
+            <p>YOU</p>
+        </section>
+
+    </body>
+
+</html>

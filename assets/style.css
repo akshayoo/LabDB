@@ -1,7 +1,7 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
     margin: 10px;
-    background-color: #0c172e;
+    background-color: #000000;
 }
 
 .nav-b {
@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 12px 24px;
-    background-color: #1f2937;
+    background-color:transparent;
     border-bottom: 1px solid #374151;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -66,11 +66,11 @@ body {
 }
 
 .head-class {
-    background: #0c172e;
+    background: transparent;
     padding: 60px 24px;
     border-bottom: 2px solid #00343f;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 .head-class h1 {
     font-size: 35px;
@@ -98,8 +98,6 @@ form {
 .project-st,
 .project-samoth,
 .project-qcs {
-    border: 1px solid #65a300;
-    border-radius: 10px;
     padding: 25px;
     margin-bottom: 50px;
 }
@@ -110,7 +108,7 @@ form {
 .method-info,
 .rewQcs,
 .project-libqc {
-    border: 1px solid #005e17;
+    border-bottom: 1px solid #beffce;
     border-radius: 8px;
     padding: 50px;
     margin-bottom: 25px;
@@ -127,7 +125,7 @@ h2 {
     font-weight: 600;
     margin: 0 0 12px;
     padding-bottom: 15px;
-    border-bottom: 2px solid #e5e7eb;
+    border-bottom: 2px solid #9a9a9a;
     color: #00a0d1;
 }
 
@@ -175,7 +173,7 @@ input[type="file"] {
 }
 
 button[type="submit"] {
-    background-color: #111827;
+    background-color: transparent;
     width: 100%;
     color: #ffffff;
     border: ipx solid rgb(255, 247, 230);
@@ -188,6 +186,49 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     border: 2px solid rgb(0, 122, 192);
+}
+
+.upd_sec {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.uptd_in{
+    width: 40%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #cfd6df;
+    margin-left: 10px;
+    background: #ffffff;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.stbtnn {
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.mb-4{
+    color: rgb(219, 236, 250);
+}
+
+.row-g3{
+    margin-top: 50px;
+}
+
+#dataView{
+    margin-top: 50px;
+    background-color: transparent;
+}
+
+strong {
+    color: aliceblue;
+}
+
+.col-md-6{
+    margin-top: 30px;
 }
 
 @media (max-width: 768px) {
