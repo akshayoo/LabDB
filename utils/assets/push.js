@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(result.message || "Submission failed");
             }
 
-            alert("Project data uploaded successfully");
+            alert("Project data uploaded successfully \n");
             form.reset();
 
         } catch (error) {

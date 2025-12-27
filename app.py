@@ -1,8 +1,11 @@
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
+from pydantic import BaseModel
 import json
 import os
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 
 
 app = FastAPI()
@@ -22,6 +25,9 @@ db = CLIENT.theraCUES
 collection = db["projects"]
 
 BASE_URL = "http://localhost:4000"
+
+
+#________________PUSH________________#
 
 
 @app.post('/push/submit')
@@ -140,3 +146,47 @@ async def submit_form(
         "mongo_id": str(ins_id)
     }
 
+
+
+#________________PUSH________________#
+
+
+
+class ProjectRequest(BaseModel):
+    project_id: str
+
+@app.post("/pull/populate")
+async def pull_populate(data: ProjectRequest):
+
+    project_inf = collection.find_one({
+        "project.project_id": data.project_id
+    })
+
+    if not project_inf:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    project_inf["_id"] = str(project_inf["_id"])
+    return project_inf
+
+
+ALLOWED_BASE = "/home/akshay/Projects/theraCUESDB"
+
+@app.get("/pull/download")
+async def download_file(path: str):
+
+    abs_path = os.path.abspath(path)
+    base = os.path.abspath(ALLOWED_BASE)
+
+    if not abs_path.startswith(base + os.sep):
+        raise HTTPException(status_code=403, detail="Access denied")
+
+    if not os.path.exists(abs_path):
+        raise HTTPException(status_code=404, detail="File not found")
+
+    return FileResponse(
+        abs_path,
+        filename=os.path.basename(abs_path),
+        media_type="application/octet-stream"
+    )
+
+    
