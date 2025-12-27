@@ -1,6 +1,5 @@
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
 from pymongo import MongoClient
 import json
 import os
@@ -25,7 +24,7 @@ collection = db["projects"]
 BASE_URL = "http://localhost:4000"
 
 
-@app.post('/submit')
+@app.post('/push/submit')
 async def submit_form(
     updated_by : str = Form(...),
     updated_date : str = Form(...),
