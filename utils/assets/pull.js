@@ -45,8 +45,6 @@ async function pullByID() {
 
         setText("updated_by", resp.audit.updated_by);
         setText("updated_date", resp.audit.updated_date);
-
-        // Setup download buttons
         const setupBtn = (id, path) => {
             const btn = document.getElementById(id);
             if (path) {
