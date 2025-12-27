@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pymongo import MongoClient
 import json
 import os
@@ -14,14 +15,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#Specify the correct path
-
-UPLOAD_DIR = "/home/user/Projects/LabDB"
-os.makedirs(UPLOAD_DIR, exist_ok= True)
+UPLOAD_DIR = "/home/akshay/Projects/theraCUESDB"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 CLIENT = MongoClient("mongodb://localhost:27017")
 db = CLIENT.theraCUES
-collection = db['projects']
+collection = db["projects"]
+
+BASE_URL = "http://localhost:4000"
 
 
 @app.post('/submit')
@@ -139,9 +140,4 @@ async def submit_form(
         "project_id": project_id,
         "mongo_id": str(ins_id)
     }
-
-
-
-
-
 

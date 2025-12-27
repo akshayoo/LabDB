@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #1e1e2e 0%, #181825 100%);
+    color: #cdd6f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+.nav-b {
+    background: #11111b;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #313244;
+}
+
+.logo img {
+    height: 45px;
+    filter: brightness(1.1);
+}
+
+.nva-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+}
+
+.nva-links a {
+    color: #bac2de;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nva-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #89b4fa;
+    transition: width 0.3s ease;
+}
+
+.nva-links a:hover {
+    color: #89b4fa;
+}
+
+.nva-links a:hover::after {
+    width: 100%;
+}
+
+.mongo-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1e1e2e;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #313244;
+}
+
+.mongo-logo img {
+    height: 25px;
+}
+
+.mongo-logo p {
+    margin: 0;
+    color: #a6e3a1;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+}
+
+.head-class {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+}
+
+.head-class h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #b57ff8;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(203, 166, 247, 0.3);
+}
+
+.head-class p {
+    font-size: 1.1rem;
+    color: #bac2de;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.sec-btn {
+    height: 250px;
+    width: 250px;
+    margin: 50px auto;
+    background: linear-gradient(135deg, #1e1e2e 0%, #181825 100%);
+    border: 2px solid #313244;
+    color: #cdd6f4;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.sec-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(137, 180, 250, 0.1) 0%, rgba(203, 166, 247, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.sec-btn:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(137, 180, 250, 0.2);
+    border-color: #89b4fa;
+    color: #89b4fa;
+}
+
+.sec-btn:hover::before {
+    opacity: 1;
+}
+
+.sec-btn:nth-child(2) .sec-btn:hover {
+    border-color: #cba6f7;
+    color: #cba6f7;
+    box-shadow: 0 20px 40px rgba(203, 166, 247, 0.2);
+}
+
+.sec-btn:nth-child(3) .sec-btn:hover {
+    border-color: #a6e3a1;
+    color: #a6e3a1;
+    box-shadow: 0 20px 40px rgba(166, 227, 161, 0.2);
+}
+
+.lht {
+    padding: 3rem 2rem;
+}
+
+.lht h1 {
+    font-size: 2rem;
+    color: #45475a;
+    margin: 0.5rem 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.lht h1:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.lht h1:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.lht h1:nth-child(4) {
+    animation-delay: 0.6s;
+    color: #585b70;
+}
+
+.lht h1:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.lht h1:nth-child(6) {
+    animation-delay: 0.2s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.container {
+    padding: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .nav-b {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nva-links {
+        gap: 1rem;
+    }
+
+    .head-class h1 {
+        font-size: 2rem;
+    }
+
+    .sec-btn {
+        width: 200px;
+        height: 200px;
+    }
+}

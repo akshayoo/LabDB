@@ -4,17 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/style.css">
         <script src="assets/post.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-        <title>DB feed</title>
+        <title>theraCUES DB Manager</title>
+
     </head>
     <body>
-
         <nav class="nav-b">
             <div class="logo">
-            <img src="assets/img/mongo.png" alt="theraCues">
+            <img src="assets/img/theracues_logo.webp" alt="theraCues">
             </div>
             <ul class="nva-links">
                 <li><a href="index.html">HOME</a></li>
@@ -33,16 +32,154 @@
         </section>
 
         <section>
-
-            <div class="upd_sec">
-                <label for="updateprojectId">Search by project ID</label>
-                <input class="uptd_in" type="text" id="updateprojectId" name="project_id" required>
-                <button class="stbtnn" type="button">Fetch data</button>
-            </div>
-       
             <div class="row">
                 <div class="col-sm-12 col-lg-12 col-md-12">
-                    <form action="/submit" method="post" enctype="multipart/form-data">
+                    <script>
+                        async function updateproject() {
+
+                            const projectID = document.getElementById("updateprojectId").value.trim();
+
+                            if (!projectID) {
+                                alert("Please enter the project ID");
+                                return;
+                            }
+
+                            try {
+                                const result = await fetch("http://localhost:4000/project/search", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ project_id: projectID })
+                                });
+
+                                if (!result.ok) {
+                                    alert("No project found. Check the ID.");
+                                    return;
+                                }
+
+                                const data = await result.json();
+
+                                document.getElementById("updateprojectTitle").value = data.title || "";
+                                document.getElementById("updateprojectCustomer").value = data.customer || "";
+                                document.getElementById("updateOrg").value = data.organization || "";
+
+                                document.getElementById("updatedBy").value = data.updated_by || "";
+                                document.getElementById("updateDate").value = data.updated_date || "";
+
+                                document.getElementById("updateSampletype").value = data.sam_type || "";
+                                document.getElementById("updatesampleNos").value = data.count ?? "";
+                                document.getElementById("updateSamplepreservation").value = data.preservation || "";
+                                document.getElementById("updateSampleinfo").value = data.other_info || "";
+
+                                document.getElementById("updateMethod").value = data.name || "";
+                                document.getElementById("updatemethodWritup").value = data.writeup || "";
+                                document.getElementById("updatemethodSummary").value = data.method_summary || "";
+
+                                document.getElementById("qcSummary").value = data.qc_summary || "";
+                                document.getElementById("libMethod").value = data.lib_method || "";
+                                document.getElementById("lib_Summary").value = data.lib_summary || "";
+
+                                document.getElementById("quantitationQcInfo").innerHTML =
+                                    data.quantification_url
+                                        ? `Existing file: <a href="${data.quantification_url}" target="_blank">Download</a>`
+                                        : "No quantitation QC file uploaded";
+
+                                document.getElementById("integrityQcInfo").innerHTML =
+                                    data.integrity_url
+                                        ? `Existing file: <a href="${data.integrity_url}" target="_blank">Download</a>`
+                                        : "No integrity QC file uploaded";
+
+                                document.getElementById("libReportInfo").innerHTML =
+                                    data.lib_report_url
+                                        ? `Existing file: <a href="${data.lib_report_url}" target="_blank">Download</a>`
+                                        : "No library QC file uploaded";
+
+                                document.getElementById("libTapeInfo").innerHTML =
+                                    data.lib_tape_url
+                                        ? `Existing file: <a href="${data.lib_tape_url}" target="_blank">Download</a>`
+                                        : "No Tapestation file uploaded";
+
+                                alert("Project loaded successfully");
+
+                            } catch (err) {
+                                console.error(err);
+                                alert("Error fetching project data");
+                            }
+                        }
+                    </script>
+
+                    <script>
+                        async function submitUpdate() {
+
+                            const projectID = document.getElementById("updateprojectId").value.trim();
+                            if (!projectID) {
+                                alert("Project ID is required");
+                                return;
+                            }
+
+                            const formData = new FormData();
+
+                            formData.append("project_id", projectID);
+
+                            formData.append("title", document.getElementById("updateprojectTitle").value);
+                            formData.append("customer", document.getElementById("updateprojectCustomer").value);
+                            formData.append("organization", document.getElementById("updateOrg").value);
+
+                            formData.append("updated_by", document.getElementById("updatedBy").value);
+                            formData.append("updated_date", document.getElementById("updateDate").value);
+
+                            formData.append("sam_type", document.getElementById("updateSampletype").value);
+                            formData.append("count", document.getElementById("updatesampleNos").value);
+                            formData.append("preservation", document.getElementById("updateSamplepreservation").value);
+                            formData.append("other_info", document.getElementById("updateSampleinfo").value);
+
+                            formData.append("name", document.getElementById("updateMethod").value);
+                            formData.append("writeup", document.getElementById("updatemethodWritup").value);
+                            formData.append("method_summary", document.getElementById("updatemethodSummary").value);
+
+                            formData.append("qc_summary", document.getElementById("qcSummary").value);
+                            formData.append("lib_method", document.getElementById("libMethod").value);
+                            formData.append("lib_summary", document.getElementById("lib_Summary").value);
+
+                            const quantFile = document.getElementById("quantitationQc").files[0];
+                            const integrityFile = document.getElementById("integrityQc").files[0];
+                            const libReportFile = document.getElementById("libReport").files[0];
+                            const libTapeFile = document.getElementById("libTapeReport").files[0];
+
+                            if (quantFile) formData.append("quantification", quantFile);
+                            if (integrityFile) formData.append("integrity", integrityFile);
+                            if (libReportFile) formData.append("lib_report", libReportFile);
+                            if (libTapeFile) formData.append("lib_tape", libTapeFile);
+
+                            try {
+                                const res = await fetch("http://localhost:4000/project/update", {
+                                    method: "POST",
+                                    body: formData   
+                                });
+
+                                if (!res.ok) {
+                                    alert("Update failed");
+                                    return;
+                                }
+
+                                const result = await res.json();
+                                alert("Project updated successfully");
+
+                                console.log(result);
+
+                            } catch (err) {
+                                console.error(err);
+                                alert("Error updating project");
+                            }
+                        }
+                    </script>
+
+
+                    <div class="upd_sec">
+                        <label for="updateprojectId">Search by project ID</label>
+                        <input class="uptd_in" type="text" id="updateprojectId" name="project_id" required>
+                        <button class="stbtnn" type="button" onclick="updateproject()">SEARCH</button>
+                    </div>
+                    <form onsubmit="return false;" enctype="multipart/form-data">
 
                         <div class="project-st">
                             <div class="project-info">
@@ -82,7 +219,6 @@
                                     <option value="CSF">CSF</option>
                                     <option value="Cells">Cells</option>
                                     <option value="Tissue">Tissue</option>
-                                    <option value="Cells">Cells</option>
                                     <option value="Tissues">Stool</option>
                                     <option value="Environmental">Environmental</option>
                                     <option value="Urine">Urine(Body-fluids)</option>
@@ -134,9 +270,11 @@
                             <div class="rewQcs">
                                 <h2>Update QC Report and Summary</h2>
                                 <label for="quantitationQc">Upload quantitation QC Report (accepted formats: csv, xlsx, odf)</label>
-                                <input type="file" id="quantitationQc" name="quantification" accept=".csv, .xlsx, .ods" required>
+                                <p id="quantitationQcInfo" class="file-info"></p>
+                                <input type="file" id="quantitationQc" name="quantification" accept=".csv,.xlsx,.ods">
                                 <label for="integrityQc">Upload quantitation QC Report (accepted formats: pdf)</label>
-                                <input type="file" id="integrityQc" name="integrity" accept=".pdf" required>
+                                <p id="integrityQcInfo" class="file-info"></p>
+                                <input type="file" id="integrityQc" name="integrity" accept=".pdf">
                                 <label for="qcSummary">Give the overall summary of the QC's</label>
                                 <textarea id="qcSummary" rows="5" cols="40" name="qc_summary" required></textarea>
                             </div>
@@ -153,14 +291,16 @@
                                     <option value="Others">Others</option>
                                 </select>
                                 <label for="libReport">Upload Library QC Report (accepted formats: csv, xlsx, odf)</label>
-                                <input type="file" id="libReport" name="lib_report" accept=".csv, .xlsx, .ods">
+                                <p id="libReportInfo" class="file-info"></p>
+                                <input type="file" id="libReport" name="lib_report" accept=".csv,.xlsx,.ods">
                                 <label for="libTapeReport">Upload Library QC Tapestation/BA report (accepted formats: pdf)</label>
+                                <p id="libTapeInfo" class="file-info"></p>
                                 <input type="file" id="libTapeReport" name="lib_tape" accept=".pdf">
                                 <label for="lib_Summary">Give the overall summary of the QC's</label>
                                 <textarea id="lib_Summary" rows="5" cols="40" name="lib_summary" required></textarea>
                             </div>
                         </div>
-                        <button type="submit">UPDATE</button>
+                        <button type="button" onclick="submitUpdate()">UPDATE</button>
 
                     </form>
                 </div>
@@ -168,9 +308,13 @@
 
         </section>
 
-        <section class="head-class">
-            <h1>THANK</h1>
-            <p>YOU</p>
+        <section class="head-class lht">
+            <h1>.</h1> 
+            <h1>...</h1>
+            <h1>.....</h1>
+            <h1>.....</h1>
+            <h1>...</h1>
+            <h1>.</h1> 
         </section>
 
     </body>
