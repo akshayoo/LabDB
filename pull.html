@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./utils/styles/pull.css">
+    <script src="utils/assets/pull.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>LabDB DB Manager</title>
+
+</head>
+<body>
+
+    <nav class="nav-b">
+        <div class="logo">
+            <img src="utils/img/mongo.png" alt="theraCues">
+        </div>
+        <ul class="nva-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="push.html">PUSH</a></li>
+            <li><a href="update.html">UPDATE</a></li>
+            <li><a href="pull.html">PULL</a></li>
+        </ul>
+        <div class="mongo-logo">
+            <img src="utils/img/mongo.png" alt="MongoDB">
+            <p>localhost:25017</p>
+        </div>
+    </nav>
+
+    <section class="head-class">
+        <h1>PULL DATA</h1>
+    </section>
+
+    <div class="container">
+        <div class="upd_sec">
+            <label for="updateprojectId">Search by project ID</label>
+            <input class="uptd_in" type="text" id="updateprojectId" name="project_id" required>
+            <button class="stbtnn" onclick="pullByID()" type="button">Fetch data</button>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <div class="card" id="dataView">
+                    <h3>Project Details</h3>
+                    
+                    <div class="data-section">
+                        <h4>Project Information</h4>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Project ID</strong>
+                                <span id="project_id">No data</span>
+                            </div>
+                            <div class="data-item">
+                                <strong>Title</strong>
+                                <span id="title">No data</span>
+                            </div>
+                            <div class="data-item">
+                                <strong>Customer</strong>
+                                <span id="customer">No data</span>
+                            </div>
+                            <div class="data-item">
+                                <strong>Organization</strong>
+                                <span id="organization">No data</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-section">
+                        <h4>Sample Information</h4>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Sample Type</strong>
+                                <span id="sam_type">No data</span>
+                            </div>
+                            <div class="data-item">
+                                <strong>Sample Count</strong>
+                                <span id="count">No data</span>
+                            </div>
+                            <div class="data-item">
+                                <strong>Preservation Method</strong>
+                                <span id="preservation">No data</span>
+                            </div>
+                            <div class="data-item">
+                                <strong>Other Information</strong>
+                                <span id="other_info">No data</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-section">
+                        <h4>Method Information</h4>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Method Name</strong>
+                                <span id="method_name">No data</span>
+                            </div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Method Writeup</strong>
+                                <span id="method_writeup">No data</span>
+                            </div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Method Summary</strong>
+                                <span id="method_summary">No data</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-section">
+                        <h4>Quality Control Reports</h4>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>QC Summary</strong>
+                                <span id="qc_summary">No data</span>
+                            </div>
+                        </div>
+                        <div class="download-grid">
+                            <button type="button" onclick="downloadFile('qc_quant_btn')" class="btn btn-outline-primary" id="qc_quant_btn" disabled>
+                                Download Quantification QC
+                            </button>
+                            <button type="button" onclick="downloadFile('qc_integrity_btn')" class="btn btn-outline-primary" id="qc_integrity_btn" disabled>
+                                Download Integrity QC
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="data-section">
+                        <h4>Library Information</h4>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Library Method</strong>
+                                <span id="lib_method">No data</span>
+                            </div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Library Summary</strong>
+                                <span id="lib_summary">No data</span>
+                            </div>
+                        </div>
+                        <div class="download-grid">
+                            <button type="button" onclick="downloadFile('lib_report_btn')" class=" btn-outline-success" id="lib_report_btn" disabled>
+                                Download Library Report
+                            </button>
+                            <button type="button" onclick="downloadFile('lib_tape_btn')" class="btn btn-outline-success" id="lib_tape_btn" disabled>
+                                Download Tapestation Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="data-section">
+                        <h4>Update Information</h4>
+                        <div class="data-row">
+                            <div class="data-item">
+                                <strong>Updated By</strong>
+                                <span id="updated_by">No data</span>
+                            </div>
+                            <div class="data-item">
+                                <strong>Updated Date</strong>
+                                <span id="updated_date">No data</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="download-section">
+                        <h4>Bulk Downloads</h4>
+                        <div class="download-grid">
+                            <button class="btn btn-primary" id="download_metadata" disabled>
+                                Download Metadata (JSON)
+                            </button>
+                            <button class="btn btn-primary" id="download_metadata_csv" disabled>
+                                Download Metadata (CSV)
+                            </button>
+                            <button class="btn btn-outline-warning" id="download_complete" disabled>
+                                Download Complete Data (ZIP)
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="head-class lht">
+        <h1>.........</h1>
+        <h1>.......</h1>
+        <h1>.....</h1>
+        <h1>...</h1>
+        <h1>.</h1> 
+    </section>
+
+</body>
+</html>

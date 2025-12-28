@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #1e1e2e 0%, #181825 100%);
+    color: #cdd6f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+.nav-b {
+    background: #11111b;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #313244;
+}
+
+.logo img {
+    height: 45px;
+    filter: brightness(1.1);
+}
+
+.nva-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+}
+
+.nva-links a {
+    color: #bac2de;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nva-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #89b4fa;
+    transition: width 0.3s ease;
+}
+
+.nva-links a:hover {
+    color: #89b4fa;
+}
+
+.nva-links a:hover::after {
+    width: 100%;
+}
+
+.mongo-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1e1e2e;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #313244;
+}
+
+.mongo-logo img {
+    height: 25px;
+}
+
+.mongo-logo p {
+    margin: 0;
+    color: #a6e3a1;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+}
+
+.head-class {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+}
+
+.head-class h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #b57ff8;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(203, 166, 247, 0.3);
+}
+
+section {
+    padding: 2rem;
+}
+
+.upd_sec {
+    background: #11111b;
+    border: 2px solid #313244;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.upd_sec label {
+    display: block;
+    color: #89b4fa;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.uptd_in {
+    width: 100%;
+    padding: 0.75rem;
+    background: #1e1e2e;
+    border: 2px solid #313244;
+    border-radius: 8px;
+    color: #cdd6f4;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.uptd_in:focus {
+    outline: none;
+    border-color: #89b4fa;
+    box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.1);
+}
+
+.stbtnn {
+    background: linear-gradient(135deg, #89b4fa 0%, #74c7ec 100%);
+    color: #11111b;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.stbtnn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(137, 180, 250, 0.4);
+}
+
+form {
+    background: #11111b;
+    border: 2px solid #313244;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.project-st,
+.project-samoth,
+.project-qcs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.project-info,
+.update-info,
+.sam-assay-info,
+.method-info,
+.rewQcs,
+.project-libqc {
+    background: #1e1e2e;
+    border: 1px solid #313244;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+h2 {
+    color: #cba6f7;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #313244;
+}
+
+label {
+    display: block;
+    color: #bac2de;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: #181825;
+    border: 2px solid #313244;
+    border-radius: 8px;
+    color: #cdd6f4;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #89b4fa;
+    box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.1);
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 0.75rem;
+    background: #181825;
+    border: 2px dashed #313244;
+    border-radius: 8px;
+    color: #cdd6f4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    border-color: #89b4fa;
+    background: #1e1e2e;
+}
+
+select {
+    cursor: pointer;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.updt {
+    background: linear-gradient(135deg, #a6e3a1 0%, #94e2d5 100%);
+    color: #11111b;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    width: 100%;
+    letter-spacing: 1px;
+}
+
+.updt:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(166, 227, 161, 0.4);
+}
+
+.lht {
+    padding: 3rem 2rem;
+}
+
+.lht h1 {
+    font-size: 2rem;
+    color: #45475a;
+    margin: 0.5rem 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.lht h1:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.lht h1:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.lht h1:nth-child(4) {
+    animation-delay: 0.6s;
+    color: #585b70;
+}
+
+.lht h1:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.lht h1:nth-child(6) {
+    animation-delay: 0.2s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-b {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nva-links {
+        gap: 1rem;
+    }
+
+    .head-class h1 {
+        font-size: 2rem;
+    }
+
+    .project-st,
+    .project-samoth,
+    .project-qcs {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 1rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+}

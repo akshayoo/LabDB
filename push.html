@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./utils/styles/push.css">
+    <script src="./utils/assets/push.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>LabDB DB Manager</title>
+
+</head>
+
+<body>
+
+    <nav class="nav-b">
+        <div class="logo">
+            <img src="utils/img/mongo.png" alt="theraCues">
+        </div>
+        <ul class="nva-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="push.html">PUSH</a></li>
+            <li><a href="update.html">UPDATE</a></li>
+            <li><a href="pull.html">PULL</a></li>
+        </ul>
+        <div class="mongo-logo">
+            <img src="utils/img/mongo.png" alt="MongoDB">
+            <p>localhost:25017</p>
+        </div>
+    </nav>
+
+    <section class="head-class">
+        <h1>PUSH DATA</h1>
+    </section>
+
+    <section>
+
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <form id="pushForm" method="post" enctype="multipart/form-data">
+
+                    <div class="project-st">
+                        <div class="update-info">
+                            <h2>Update uploader info</h2>
+                            <label for="updatedBy">Updated By</label>
+                            <select id="updatedBy" name="updated_by" required>
+                                <option value="" disabled selected>select</option>
+                                <option value="Name 1">Name 1</option>
+                                <option value="Name 2">Name 2</option>
+                                <option value="Name 3">Name 3</option>
+                            </select>
+                            <label for="updateDate">Updated date</label>
+                            <input type="date" id="updateDate" name="updated_date" required>
+                        </div>
+
+                        <div class="project-info">
+                            <h2>Project Info</h2>
+                            <label for="updateprojectId">ID</label>
+                            <input type="text" id="updateprojectId" name="project_id" required>
+                            <label for="updateprojectTitle">Title</label>
+                            <input type="text" id="updateprojectTitle" name="title" required>
+                            <label for="updateprojectCustomer">Customer name</label>
+                            <input type="text" id="updateprojectCustomer" name="customer" required>
+                            <label for="updateOrg">Institute/Organisation</label>
+                            <input type="text" id="updateOrg" name="organization" required>
+                        </div>
+                    </div>
+
+
+                    <div class="project-samoth">
+                        <div class="sam-assay-info">
+                            <h2>Update sample and assay info and reports</h2>
+                            <label for="updateSampletype">Sample type</label>
+                            <select id="updateSampletype" name="sam_type" required>
+                                <option value="" disabled selected>select</option>
+                                <option value="Blood">Blood</option>
+                                <option value="Plasma">Plasma</option>
+                                <option value="Serum">Serum</option>
+                                <option value="CSF">CSF</option>
+                                <option value="Cells">Cells</option>
+                                <option value="Tissue">Tissue</option>
+                                <option value="Tissues">Stool</option>
+                                <option value="Environmental">Environmental</option>
+                                <option value="Urine">Urine(Body-fluids)</option>
+                                <option value="Saliva">Saliva(Body-fluids)</option>
+                                <option value="Tear">Tear(Body-fluids)</option>
+                                <option value="Milk">Milk(Body-fluids)</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <label for="updatesampleNos">Total number of samples</label>
+                            <input type="number" id="updatesampleNos" name="count" required>
+                            <label for="updateSamplepreservation">Sample Preservation method</label>
+                            <select id="updateSamplepreservation" name="preservation" required>
+                                <option value="" disabled selected>select</option>
+                                <option value="Frozen">Frozen</option>
+                                <option value="FFPE">FFPE</option>
+                                <option value="Rnalater">RNA later</option>
+                                <option value="Alcohol">Alcohol</option>
+                                <option value="TrisolLysate">Trisol lysate</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <label for="updateSampleinfo">Any other information</label>
+                            <textarea id="updateSampleinfo" rows="5" cols="40" name="other_info" required></textarea>
+                        </div>
+
+                        <div class="method-info">
+                            <h2>Update methods</h2>
+                            <label for="updateMethod">Method</label>
+                            <select id="updateMethod" name="name" required>
+                                <option value="" disabled selected>select</option>
+                                <option value="nCounter">nCounter</option>
+                                <option value="GeoMx">GeoMx</option>
+                                <option value="RnaSeq">Rna-Seq</option>
+                                <option value="WGS">WGS</option>
+                                <option value="WGM_Seq">Whole genome metagenome</option>
+                                <option value="sRNASeq">Small RNA-Seq</option>
+                                <option value="tRNASeq">Total RNA-Seq</option>
+                                <option value="MetaTrnscrptome">Meta Transcriptome</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <label for="updatemethodWritup">Method writeup</label>
+                            <textarea id="updatemethodWritup" rows="5" cols="40" name="writeup" required></textarea>
+                            <label for="updatemethodSummary">Summary</label>
+                            <textarea id="updatemethodSummary" rows="5" cols="40" name="method_summary"
+                                required></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="project-qcs">
+                        <div class="rewQcs">
+                            <h2>Update QC Report and Summary</h2>
+                            <label for="quantitationQc">Upload quantitation QC Report (accepted formats: csv, xlsx, ods, pdf)</label>
+                            <input type="file" id="quantitationQc" name="quantification" accept=".csv, .xlsx, .ods, .pdf"
+                                required>
+                            <label for="integrityQc">Upload quantitation QC Report (accepted formats: pdf)</label>
+                            <input type="file" id="integrityQc" name="integrity" accept=".pdf" required>
+                            <label for="qcSummary">Give the overall summary of the QC's</label>
+                            <textarea id="qcSummary" rows="5" cols="40" name="qc_summary" required></textarea>
+                        </div>
+
+                        <div class="project-libqc">
+                            <h2>Library QC Reports</h2>
+                            <label for="libMethod">Method</label>
+                            <select id="libMethod" name="lib_method">
+                                <option value="" disabled selected>select</option>
+                                <option value="totalRNA">total RNA</option>
+                                <option value="mRNA">mRNA</option>
+                                <option value="miRNA">miRNA</option>
+                                <option value="DNA">DNA</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <label for="libReport">Upload Library QC Report (accepted formats: csv, xlsx, ods, pdf)</label>
+                            <input type="file" id="libReport" name="lib_report" accept=".csv, .xlsx, .ods, .pdf">
+                            <label for="libTapeReport">Upload Library QC Tapestation/BA report (accepted formats:
+                                pdf)</label>
+                            <input type="file" id="libTapeReport" name="lib_tape" accept=".pdf">
+                            <label for="lib_Summary">Give the overall summary of the QC's</label>
+                            <textarea id="lib_Summary" rows="5" cols="40" name="lib_summary" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit">PUSH</button>
+
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="head-class lht">
+        <h1>.</h1>
+        <h1>...</h1>
+        <h1>.....</h1>
+        <h1>.......</h1>
+        <h1>.........</h1>
+    </section>
+
+</body>
+
+</html>
