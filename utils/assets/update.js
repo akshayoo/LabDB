@@ -152,11 +152,11 @@ async function submitUpdate() {
         }
 
         alert(`Project ${projectId} updated successfully!`);
-        window.location.reload();
 
     } catch (err) {
         console.error(err);
         alert(err.message);
     }
+    window.location.reload();
 }
 
